@@ -22,7 +22,7 @@ from wechatpy.utils import ObjectDict
 # ============
 site_root = 'http://166.111.139.148'
 # ckpt = os.path.join('models/training/flower_resnet50', 'ckpt_24_0.2286.h5.best')
-ckpt = os.path.join('models/training/flower_resnet50_12', 'ckpt_9.h5')
+ckpt = os.path.join('models/training/ckpt_27_0.1972.h5.best', 'ckpt_29.h5')
 inp_size = 256
 gpu = 0
 
@@ -77,7 +77,8 @@ def msg_handler(msg):
         im_url = msg.image
         save_name = os.path.join(im_save_dir, '{}.jpg'.format(im_id))
         urllib.urlretrieve(im_url, save_name)
-        print('download image from: {} \nto: {}'.format(im_url, save_name))
+        # print('download image from: {} \nto: {}'.format(im_url, save_name))
+        print('[log] recive an image...')
 
         # resize
         im = cv2.imread(save_name)
@@ -85,16 +86,16 @@ def msg_handler(msg):
             reply = create_reply('图片上传失败', msg)
         else:
             min_size = min(im.shape[:2])
-            scale = 1.
-            if min_size > 400.:
-                scale = 400. / min_size
-                im = cv2.resize(im, dsize=None, fx=scale, fy=scale)
+            scale = 300. / min_size
+            im = cv2.resize(im, dsize=None, fx=scale, fy=scale)
             cv2.imwrite(save_name, im)
-            print('resize image: {}'.format(scale))
+            print('[log] resize image: {}'.format(scale))
 
             pred = test_im(save_name)
             inds = np.arange(len(pred), dtype=np.int)
             inds = sorted(inds, key=lambda i: pred[i], reverse=True)
+            print('[log] predict: ', end='')
+            print(inds)
 
             flowers = []
             for ind in inds[:5]:
