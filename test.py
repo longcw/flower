@@ -14,11 +14,8 @@ params = Tester.TestParams()
 
 # hyper-parameters
 # ====================================
-# separable; binary; real
-conv_type = 'real'
-n_hourglass = 1
-
 data_dir = 'data/flower/val'
+n_classes = len(os.listdir(data_dir))
 
 inp_size = 256
 n_threads = 6
@@ -43,7 +40,8 @@ test_data = get_loader(data_dir, inp_size, params.batch_size,
 print('test dataset len: {}'.format(len(test_data.dataset)))
 
 # model
-model = resnet50(num_classes=10)
+model = resnet50(num_classes=n_classes)
+print('num_classes: {}'.format(n_classes))
 
 
 def batch_processor(state, batch):

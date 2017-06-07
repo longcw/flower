@@ -11,8 +11,6 @@ params = Trainer.TrainParams()
 
 # hyper-parameters
 # ====================================
-# separable; binary; real
-
 data_dirs = 'data/flower'
 
 inp_size = 256
@@ -20,7 +18,7 @@ n_threads = 10
 momentum = 0.9
 weight_decay = 5*1e-5
 
-params.exp_name = 'flower_resnet50'
+params.exp_name = 'flower_resnet50_12'
 params.save_dir = 'models/training/{}'.format(params.exp_name)
 params.ckpt = 'models/resnet50.h5'
 
@@ -54,7 +52,9 @@ if params.val_nbatch > 0:
     print('val dataset len: {}'.format(len(valid_data.dataset)))
 
 # model
-model = resnet50(num_classes=10)
+n_classes = len(os.listdir(os.path.join(data_dirs, 'train')))
+print('num_classes: {}'.format(n_classes))
+model = resnet50(num_classes=n_classes)
 
 params.optimizer = torch.optim.SGD(model.parameters(), params.init_lr, momentum, weight_decay=weight_decay)
 

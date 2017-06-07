@@ -2,7 +2,7 @@ import os
 import cv2
 
 
-root_dir = '/data/flower/train'
+root_dir = '../data/flower/new'
 
 IMG_EXTENSIONS = [
     '.jpg', '.JPG', '.jpeg', '.JPEG',

@@ -6,8 +6,8 @@ import numpy as np
 from tnn.utils.path import mkdir
 
 
-src_root = '/data/flower/train'
-dst_root = '/data/flower/val'
+src_root = '../data/flower/new'
+dst_root = '../data/flower/val'
 mkdir(dst_root)
 
 types = os.listdir(src_root)

@@ -9,7 +9,7 @@ import torch
 from torch.autograd import Variable
 from network.resnet import resnet50
 import torchvision.transforms as transforms
-from datasets.ccs_testset import im_loader
+from datasets.flower_testset import im_loader
 from tnn.utils.path import mkdir
 from tnn.network import net_utils
 
@@ -21,7 +21,8 @@ from wechatpy.utils import ObjectDict
 
 # ============
 site_root = 'http://166.111.139.148'
-ckpt = os.path.join('models/training/flower_resnet50', 'ckpt_24_0.2286.h5.best')
+# ckpt = os.path.join('models/training/flower_resnet50', 'ckpt_24_0.2286.h5.best')
+ckpt = os.path.join('models/training/flower_resnet50_12', 'ckpt_9.h5')
 inp_size = 256
 gpu = 0
 
