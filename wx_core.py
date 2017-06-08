@@ -22,7 +22,7 @@ from wechatpy.utils import ObjectDict
 # ============
 site_root = 'http://166.111.139.148'
 # ckpt = os.path.join('models/training/flower_resnet50', 'ckpt_24_0.2286.h5.best')
-ckpt = os.path.join('models/training/ckpt_27_0.1972.h5.best', 'ckpt_29.h5')
+ckpt = os.path.join('models/training/flower_resnet50_12', 'ckpt_27_0.1972.h5.best')
 inp_size = 256
 gpu = 0
 
@@ -71,7 +71,11 @@ def test_im(im_path):
 
 def msg_handler(msg):
     if msg.type == 'text':
-        reply = create_reply(msg.content, msg)
+        text = '上传照片识别花名\n目前支持: '
+        for name in class_names:
+            text += '{} '.format(name)
+        text += '{}种花'.format(len(class_names))
+        reply = create_reply(text, msg)
     elif msg.type == 'image':
         im_id = msg.media_id
         im_url = msg.image
