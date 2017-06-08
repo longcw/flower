@@ -40,7 +40,7 @@ test_data = get_loader(data_dir, inp_size, params.batch_size,
 print('test dataset len: {}'.format(len(test_data.dataset)))
 
 # model
-model = resnet50(num_classes=n_classes)
+model = resnet50(num_classes=n_classes, inp_size=inp_size)
 print('num_classes: {}'.format(n_classes))
 
 

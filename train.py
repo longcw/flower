@@ -18,7 +18,7 @@ n_threads = 10
 momentum = 0.9
 weight_decay = 5*1e-5
 
-params.exp_name = 'flower_resnet50_12'
+params.exp_name = 'flower_resnet50_12_256'
 params.save_dir = 'models/training/{}'.format(params.exp_name)
 params.ckpt = 'models/resnet50.h5'
 
@@ -54,7 +54,7 @@ if params.val_nbatch > 0:
 # model
 n_classes = len(os.listdir(os.path.join(data_dirs, 'train')))
 print('num_classes: {}'.format(n_classes))
-model = resnet50(num_classes=n_classes)
+model = resnet50(num_classes=n_classes, inp_size=inp_size)
 
 params.optimizer = torch.optim.SGD(model.parameters(), params.init_lr, momentum, weight_decay=weight_decay)
 

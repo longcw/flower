@@ -70,13 +70,7 @@ def test_im(im_path):
 
 
 def msg_handler(msg):
-    if msg.type == 'text':
-        text = '上传照片识别花名\n目前支持: '
-        for name in class_names:
-            text += '{} '.format(name)
-        text += '{}种花'.format(len(class_names))
-        reply = create_reply(text, msg)
-    elif msg.type == 'image':
+    if msg.type == 'image':
         im_id = msg.media_id
         im_url = msg.image
         save_name = os.path.join(im_save_dir, '{}.jpg'.format(im_id))
@@ -112,14 +106,12 @@ def msg_handler(msg):
                 }
                 flowers.append(flower)
             reply = create_reply(flowers, msg)
-
-            # text = ''
-            # for i, name in enumerate(class_names):
-            #     text += '{}: {:.4f}\n'.format(name, pred[i])
-            # reply = create_reply(text, msg)
-            #
-            # print(reply)
     else:
-        reply = create_reply('Sorry, can not handle this for now', msg)
+        text = '上传照片识别花名\n目前支持: '
+        for name in class_names:
+            text += '{} '.format(name)
+        text += '{}种花'.format(len(class_names))
+        reply = create_reply(text, msg)
+        # reply = create_reply('Sorry, can not handle this for now', msg)
 
     return reply
