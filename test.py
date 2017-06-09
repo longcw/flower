@@ -20,10 +20,10 @@ n_classes = len(os.listdir(data_dir))
 inp_size = 256
 n_threads = 6
 
-params.exp_name = 'flower_resnet50_12'
+params.exp_name = 'flower_resnet50_12_256'
 params.save_dir = 'models/training/{}'.format(params.exp_name)
 # params.ckpt = None
-params.ckpt = os.path.join(params.save_dir, 'ckpt_27_0.1972.h5.best')
+params.ckpt = os.path.join(params.save_dir, 'ckpt_29_0.3089.h5.best')
 
 # Don't use gpu if `gpus == None`
 params.gpus = [0]

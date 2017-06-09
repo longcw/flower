@@ -22,7 +22,8 @@ from wechatpy.utils import ObjectDict
 # ============
 site_root = 'http://166.111.139.148'
 # ckpt = os.path.join('models/training/flower_resnet50', 'ckpt_24_0.2286.h5.best')
-ckpt = os.path.join('models/training/flower_resnet50_12', 'ckpt_27_0.1972.h5.best')
+# ckpt = os.path.join('models/training/flower_resnet50_12', 'ckpt_27_0.1972.h5.best')
+ckpt = os.path.join('models/training/flower_resnet50_12_256', 'ckpt_29_0.3089.h5.best')
 inp_size = 256
 gpu = 0
 
